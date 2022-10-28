@@ -1,16 +1,11 @@
 import PropTypes from 'prop-types';
 import css from './FeedbackOptions.module.css';
 
-export function FeedbackOptions({ onLeaveFeedback, arrayState }) {
+export function FeedbackOptions({ onLeaveFeedback, options }) {
   return (
     <div className={css.buttons}>
-      {Object.keys(arrayState).map(item => (
-        <button
-          key={item}
-          name={item}
-          type="button"
-          onClick={event => onLeaveFeedback(event)}
-        >
+      {options.map(item => (
+        <button key={item} name={item} type="button" onClick={onLeaveFeedback}>
           {item}
         </button>
       ))}
@@ -19,8 +14,7 @@ export function FeedbackOptions({ onLeaveFeedback, arrayState }) {
 }
 
 FeedbackOptions.propTypes = {
-  options: PropTypes.arrayOf(
-    PropTypes.shape({ name: PropTypes.string, title: PropTypes.string })
-  ),
+  options: PropTypes.array,
+
   onLeaveFeedback: PropTypes.func,
 };
